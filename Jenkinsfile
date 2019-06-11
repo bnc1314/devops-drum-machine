@@ -18,6 +18,7 @@ pipeline {
       parallel {
         stage('Deploy') {
           steps {
+            sh 'sudo docker rm student14'
             sh 'sudo docker run -d --name student14 -p 7676:80 -p 2121:22 iliyan/docker-nginx-sshd'
           }
         }
