@@ -21,12 +21,12 @@ pipeline {
             sh 'sudo docker stop student14'
             sh 'sudo docker rm student14'
             sh 'sudo docker run -d --name student14 -p 7676:80 -p 2121:22 iliyan/docker-nginx-sshd'
-            sshPublisher(publishers: [sshPublisherDesc(configName: 'ngix', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'exec', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '**/*', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '**/sites/*')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+            sshPublisher(publishers: [sshPublisherDesc(configName: 'ngix', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'exec', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/sites', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'public/*')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
           }
         }
         stage('Archive Artifacts') {
           steps {
-            archiveArtifacts '**/public/assets/**'
+            archiveArtifacts '**/public/*'
           }
         }
       }
