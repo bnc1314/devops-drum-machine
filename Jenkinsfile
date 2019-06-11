@@ -18,7 +18,7 @@ pipeline {
       parallel {
         stage('Deploy') {
           steps {
-            sh 'sudo npm start &'
+            sh 'docker run -d --name student1 -p 7676:80 -p 2222:22 iliyan/docker-nginx-sshd'
           }
         }
         stage('Archive Artifacts') {
