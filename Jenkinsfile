@@ -1,6 +1,6 @@
 pipeline {
   agent {
-    node { label: "ubuntu"}
+    node { label 'ubuntu'}
   }
   stages {
     stage('Compile') {
