@@ -1,15 +1,17 @@
 pipeline {
-  agent any
+  agent {
+    node {
+      label: "ubuntu"
+    }
+  }
   stages {
     stage('Compile') {
-      agent any
       steps {
         sh 'sudo npm install'
         sh 'sudo npm run build'
       }
     }
     stage('Unit Testing') {
-      agent any
       steps {
         sh 'sudo npm test'
       }
